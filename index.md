@@ -56,7 +56,7 @@ For my first milestone, I finished building the chassis and wiring the electrica
 # Challenges
 Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
-![Photo of battery wiring](Milestone_1_Wires_Close-up.jpeg)
+![Photo of battery wiring](Milestone_1_Wires_Closeup.jpeg)
 
 
 Fixing the servo motors
