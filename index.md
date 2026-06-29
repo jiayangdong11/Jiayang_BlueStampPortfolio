@@ -50,13 +50,13 @@ For your second milestone, explain what you've worked on since your previous mil
 For my first milestone, I finished building the chassis and wiring the electrical components of the hexapod. First, I attatched the servo discs to the acrylic chassis. This was very time consuming, as there were 18 discs to attatch and the self threading screws were very tight. After that, I attatched each servo motor to a segment of the hexapod's legs and attatched the arm of each servo motor to a servo disc. I connected each of the servos to the control board, and attatched a connecter to the control board's power pins. With the addition of an acrylic backboard, the chassis was complete.
 
 ![Hexapod top view](Milestone #1 Top View.jpeg)
-[Hexapod bottom view](Milestone #1 Bottom View.jpeg)
+![Hexapod bottom view](Milestone #1 Bottom View.jpeg)
 
 
 # Challenges
 Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
-[Photo of battery wiring](Milestone #1 Wires Close-up.jpeg)
+![Photo of battery wiring](Milestone #1 Wires Close-up.jpeg)
 
 
 Fixing the servo motors
