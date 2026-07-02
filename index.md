@@ -64,7 +64,8 @@ Due to the fact that the two 3.7V lithium batteries the hexapod called for were 
 ### Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
 
-## How it Works
+## Next Step
+For the next step, I want to build the remote controller and design a battery holder for the external battery pack. This will allow my robot to move remotely while carrying the battery pack.
 
 
 # Schematics 
