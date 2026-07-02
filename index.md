@@ -43,9 +43,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 # First Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IBBULp1QDGs?si=4HuLCJoS-O-xNNpL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IBBULp1QDGs?si=18xh0vsklhWrsrXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
