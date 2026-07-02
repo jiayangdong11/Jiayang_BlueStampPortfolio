@@ -47,7 +47,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For my first milestone, I finished building the chassis and wiring the electrical components of the hexapod. First, I attatched the servo discs to the acrylic chassis. This was very time consuming, as there were 18 discs to attatch and the self threading screws were very tight. After that, I attatched each servo motor to a segment of the hexapod's legs and attatched the arm of each servo motor to a servo disc. I connected each of the servos to the control board, and attatched a connecter to the control board's power pins. With the addition of an acrylic backboard, the chassis was complete.
+For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
 ![Hexapod top view](Milestone_1_Top_View.jpeg)
 
@@ -64,7 +64,7 @@ Due to the fact that the two 3.7V lithium batteries the hexapod called for were 
 ### Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
 
-
+## How it Works
 
 
 # Schematics 
