@@ -45,14 +45,13 @@ For your second milestone, explain what you've worked on since your previous mil
 For my second milestone, I built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
 
 ## Designing the Battery Case
-Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability. I also modeled the position of the button, as my planned battery case would have covered the original mechansim and I planned to design a new part to push it.
-
+Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability.
 ![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto; width: 400px;"}
 Above: Sketch of hexapod chassis geometry
 
 
 
-Because the power button of the hexapod was going to be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplate of the battery case. I created a long rod 
+After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
 
 # First Milestone
 
