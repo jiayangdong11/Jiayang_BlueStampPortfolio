@@ -51,9 +51,19 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
   Sketch of hexapod chassis geometry
 </div>
 
-
+First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress.
+At this point, I also found that creating the baseplate like this would cover the hexapod's power button, and so I would have to design a part to push it.
+![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
+<div align="center">
+  Sketch of hexapod baseplate geometry
+</div>
 
 After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
+<img src="Photos/buttonExport1Image width="400"/> <img src="Photos/buttonHolderExport1Image.jpeg" width="400"/>
+<div align="center">
+  Left: 3D model of button with keys / Right: 3D model of button holder with grooves
+</div>
+
 
 # First Milestone
 
