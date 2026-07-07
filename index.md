@@ -47,7 +47,7 @@ For my second milestone, I built a remote control for my hexapod and I designed 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability. I also modeled the position of the button, as my planned battery case would have covered the original mechansim and I planned to design a new part to push it.
 
-![Picture of robot chassis geo](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png)
+<img src="Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png"/>
 
 # First Milestone
 
