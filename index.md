@@ -55,9 +55,9 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
 
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
-![Hexapod top view](Milestone_1_Top_View.jpeg)
+![Hexapod top view](Photos/Milestone_1_Top_View.jpeg)
 
-![Hexapod bottom view](Milestone_1_Bottom_View.jpeg)
+![Hexapod bottom view](Photos/Milestone_1_Bottom_View.jpeg)
 
 
 ## Challenges
