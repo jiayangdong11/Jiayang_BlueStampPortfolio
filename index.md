@@ -46,8 +46,10 @@ For my second milestone, I built a remote control for my hexapod and I designed 
 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability.
-![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto; width: 400px;"}
-Above: Sketch of hexapod chassis geometry
+![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
+<div align="center">
+  Sketch of hexapod chassis geometry
+</div>
 
 
 
@@ -59,16 +61,24 @@ After finding that power button of the hexapod would be covered by the baseplate
 
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
-![Hexapod top view](Photos/Milestone_1_Top_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"} ![Hexapod bottom view](Photos/Milestone_1_Bottom_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
-Above left: Hexapod top view
-Above right: Hexapod bottom view
+![Hexapod top view](Photos/Milestone_1_Top_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"} 
+<div align="center">
+  Hexapod top view
+</div>
+![Hexapod bottom view](Photos/Milestone_1_Bottom_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
+<div align="center">
+  Hexapod bottom view
+</div>
 
 ## Challenges
 ### Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
 
 ![Hexapod control board and sautered wires](Photos/Milestone_1_Wires_Closeup.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
-Above: Hexapod control board and sautered wires
+<div align="center">
+  Hexapod control board and sautered wires
+</div>
+
 
 ### Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
