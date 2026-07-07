@@ -55,16 +55,15 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
 
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
-![Hexapod top view](Photos/Milestone_1_Top_View.jpeg)
-
-![Hexapod bottom view](Photos/Milestone_1_Bottom_View.jpeg)
-
+<img src="Photos/Milestone_1_Top_View.jpeg" width="400"/> <img src="Photos/Milestone_1_Bottom_View.jpeg" width="400"/>
 
 ## Challenges
 ### Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
 
-![Photo of battery wiring](Photos/Milestone_1_Wires_Closeup.jpeg)
+
+<img src="Photos/Milestone_1_Wires_Closeup.jpeg" width="400"/>
+
 
 
 ### Fixing the servo motors
