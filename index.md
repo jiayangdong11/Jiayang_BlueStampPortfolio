@@ -46,6 +46,7 @@ For my second milestone, I built a remote control for my hexapod and I designed 
 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability.
+
 ![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod chassis geometry
@@ -53,12 +54,14 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
 
 First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress.
 At this point, I also found that creating the baseplate like this would cover the hexapod's power button, and so I would have to design a part to push it.
+
 ![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod baseplate geometry
 </div>
 
 After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
+
 <img src="Photos/buttonExport1Image width="400"/> <img src="Photos/buttonHolderExport1Image.jpeg" width="400"/>
 <div align="center">
   Left: 3D model of button with keys / Right: 3D model of button holder with grooves
@@ -80,6 +83,7 @@ For my first milestone, I built the chassis of the hexapod and and finished wiri
   Hexapod bottom view
 </div>
 
+
 ## Challenges
 ### Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
@@ -89,9 +93,9 @@ Due to the fact that the two 3.7V lithium batteries the hexapod called for were 
   Hexapod control board and sautered wires
 </div>
 
-
 ### Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
+
 
 ## Next Step
 For the next step, I want to build the remote controller and design a battery holder for the external battery pack. This will allow my robot to move remotely while carrying the battery pack.
