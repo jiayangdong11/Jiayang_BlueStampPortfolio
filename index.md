@@ -47,7 +47,7 @@ For my second milestone, I built a remote control for my hexapod and I designed 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability. I also modeled the position of the button, as my planned battery case would have covered the original mechansim and I planned to design a new part to push it.
 
-![Picture of robot chassis geo](Milestone_2_Robot_Chassis_Geo_Annotated.png)
+![Picture of robot chassis geo](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png)
 
 # First Milestone
 
@@ -64,7 +64,7 @@ For my first milestone, I built the chassis of the hexapod and and finished wiri
 ### Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
 
-![Photo of battery wiring](Milestone_1_Wires_Closeup.jpeg)
+![Photo of battery wiring](Photos/Milestone_1_Wires_Closeup.jpeg)
 
 
 ### Fixing the servo motors
