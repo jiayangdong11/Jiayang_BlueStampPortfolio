@@ -47,7 +47,7 @@ For my second milestone, I built a remote control for my hexapod and I designed 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability. I also modeled the position of the button, as my planned battery case would have covered the original mechansim and I planned to design a new part to push it.
 
-<img src="Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png"/>
+![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto; width: 400px;"}
 Above: Sketch of hexapod chassis geometry
 
 
@@ -60,7 +60,7 @@ Because the power button of the hexapod was going to be covered by the baseplate
 
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
 
-<img src="Photos/Milestone_1_Top_View.jpeg" width="400"/> <img src="Photos/Milestone_1_Bottom_View.jpeg" width="400"/>
+![Hexapod top view](Photos/Milestone_1_Top_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"} ![Hexapod bottom view](Photos/Milestone_1_Bottom_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
 Above left: Hexapod top view
 Above right: Hexapod bottom view
 
@@ -69,7 +69,6 @@ Above right: Hexapod bottom view
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
 
 ![Hexapod control board and sautered wires](Photos/Milestone_1_Wires_Closeup.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
-<img src="Photos/Milestone_1_Wires_Closeup.jpeg" width="400"/>
 Above: Hexapod control board and sautered wires
 
 ### Fixing the servo motors
