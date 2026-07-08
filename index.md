@@ -42,7 +42,10 @@ For your second milestone, explain what you've worked on since your previous mil
 - What needs to be completed before your final milestone
 
 
-For my second milestone, I built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
+For my second milestone, I used provided Arduino and Processing app to allow the hexapod to move. I also built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
+
+## Programming the robot
+Premade code was provided by the company that created the hexabot kit in the form of Processing App and Arduino code files. An option to completely code the robot from scratch was avaiable, but I did not choose to take it. However, the premade code still provided some degree of customization and flexibility. I was able to adjust the robot's movement speed, walking gait (see "How it works" section below), and the radio frequency of communications between the robot and the remote, which I changed to prevent my hexapod from receiving singals from other studennt's controllers. 
 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability.
@@ -52,21 +55,22 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
   Sketch of hexapod chassis geometry
 </div>
 
-First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress.
-At this point, I also found that creating the baseplate like this would cover the hexapod's power button, and so I would have to design a part to push it.
+First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress. I added stilts to the points of attatchment in order to elevate the battery case from the electrical components also present on top of the hexapod. At this point, I also found that my baseplate design would cover the hexapod's power button, and so I would have to design a part to push it.
 
 ![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod baseplate geometry
-</div>
+</div> <br>
 
 After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
 
-<img src="Photos/buttonExport1Image width="400"/> <img src="Photos/buttonHolderExport1Image.jpeg" width="400"/>
+<br>
+<img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/buttonHolderExport1Image.png" width="400"/>
 <div align="center">
   Left: 3D model of button with keys / Right: 3D model of button holder with grooves
-</div>
+</div> <br>
 
+After 3D printing the first version of my battery case, I found that some measurements were off. The postition of the button pushing mechanism did not align with the power switch on the hexapod, and the length of the button did not account for the height of the stilts, meaning that the that it could not reach the power switch. These issues were easy to fix, requiring only a few adjustments in the measurements of the design.
 
 # First Milestone
 
