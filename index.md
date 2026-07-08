@@ -72,6 +72,17 @@ After finding that power button of the hexapod would be covered by the baseplate
 
 After 3D printing the first version of my battery case, I found that some measurements were off. The postition of the button pushing mechanism did not align with the power switch on the hexapod, and the length of the button did not account for the height of the stilts, meaning that the that it could not reach the power switch. These issues were easy to fix, requiring only a few adjustments in the measurements of the design.
 
+## How it works
+The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
+
+INSERT PHOTO
+
+The premade code from the company that created the hexapod allows for three movement types, or gaits. The Tripod gait is the fastest in terms of movement speed, as the robot moves three non-adjacent legs at a time and completes a movement cycle in only two movements. The Wave gait only moves one leg at a time, sacrificing speed for stability on rough terrain, maintaing five legs on the ground at all times. Finally, there is an intermediate hybrid gait that combines aspects of both, moving one or two legs at a time to balance speed and stability.
+
+INSERT PHOTOS
+
+The hexapod and the remote control communicate using wireless signals, 
+
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IBBULp1QDGs?si=18xh0vsklhWrsrXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
