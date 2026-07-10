@@ -76,14 +76,20 @@ After 3D printing the first version of my battery case, I found that some measur
 ## How it works
 The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
 
-![Sketch of hexapod baseplate geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
+![Sketch of hexapod leg movement](Photos/Milestone_2_Robot_Hexapod_Leg_Diagram_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
 <div align="center">
   Diagram of hexapod leg movement
 </div>
 <br>
 The premade code from the company that created the hexapod allows for three movement types, or gaits. The Tripod gait is the fastest in terms of movement speed, as the robot moves three non-adjacent legs at a time and completes a movement cycle in only two movements. The Wave gait only moves one leg at a time, sacrificing speed for stability on rough terrain, maintaing five legs on the ground at all times. Finally, there is an intermediate hybrid gait that combines aspects of both, moving one or two legs at a time to balance speed and stability.
 
-INSERT PHOTOS
+<div align="center">
+  <img src="Photos/Milestone_2_Gait_1.png" width="250" style="margin-right: 30px;" /> <img src="Photos/Milestone_2_Gait_2.png" width="250"/> <img src="Photos/Milestone_2_Gait_2.png" width="250" style="margin-left: 30px;" />
+</div>
+<div align="center">
+  Left: Tripod gait / Center: Hybrid gait / Right: Wave gait
+</div>
+<br>
 
 The hexapod and the remote control communicate using wireless signals, 
 
