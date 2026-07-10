@@ -49,37 +49,38 @@ Premade code was provided by the company that created the hexabot kit in the for
 
 ## Designing the Battery Case
 Before creating the CAD for the battery case,  I created a model of the hexapod's chassis to ensure that the battery holder I designed later would fit correctly onto the hexapod. During the modeling of the hexapod's chassis, I also decided on the points of attatchent for the battery case, choosing them to be as far apart as possible to ensure stability.
-
+<br>
 ![Sketch of hexapod chassis geometry](Photos/Milestone_2_Robot_Chassis_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod chassis geometry
 </div>
-
+<br>
 First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress. I added stilts to the points of attatchment in order to elevate the battery case from the electrical components also present on top of the hexapod. At this point, I also found that my baseplate design would cover the hexapod's power button, and so I would have to design a part to push it.
-
+<br>
 ![Sketch of hexapod baseplate geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod baseplate geometry
-</div> <br>
-
+</div> 
+<br>
 After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
-
-| | |
-|:---:|:---:|
-| ![Image of button](Photos/buttonExport1Image.png) | ![Image of button holder](Photos/buttonHolderExport1Image.png) |
-
-<img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/buttonHolderExport1Image.png" width="400"/>
+<br>
+<div align="center">
+  <img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/buttonHolderExport1Image.png" width="400"/>
+</div>
 <div align="center">
   Left: 3D model of button with keys / Right: 3D model of button holder with grooves
-</div> <br>
-
+</div> 
+<br>
 After 3D printing the first version of my battery case, I found that some measurements were off. The postition of the button pushing mechanism did not align with the power switch on the hexapod, and the length of the button did not account for the height of the stilts, meaning that the that it could not reach the power switch. These issues were easy to fix, requiring only a few adjustments in the measurements of the design.
 
 ## How it works
 The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
-
-INSERT PHOTO
-
+<br>
+![Sketch of hexapod baseplate geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
+<div align="center">
+  Diagram of hexapod leg movement
+</div>
+<br>
 The premade code from the company that created the hexapod allows for three movement types, or gaits. The Tripod gait is the fastest in terms of movement speed, as the robot moves three non-adjacent legs at a time and completes a movement cycle in only two movements. The Wave gait only moves one leg at a time, sacrificing speed for stability on rough terrain, maintaing five legs on the ground at all times. Finally, there is an intermediate hybrid gait that combines aspects of both, moving one or two legs at a time to balance speed and stability.
 
 INSERT PHOTOS
@@ -87,11 +88,10 @@ INSERT PHOTOS
 The hexapod and the remote control communicate using wireless signals, 
 
 # First Milestone
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IBBULp1QDGs?si=18xh0vsklhWrsrXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<br>
 For my first milestone, I built the chassis of the hexapod and and finished wiring the electrical components. First, I attatched the 18 servo discs to the acrylic chassis and the legs of the hexapod with self threading screws. The servo discs are used to securely connect the servo motors to the body and legs of the hexapod. After connecting each of the servos to the control board, I soldered connector wires to allow an external battery to power the hexapod. With the addition of an acrylic backboard, the chassis was complete.
-
+<br>
 ![Hexapod top view](Photos/Milestone_1_Top_View.jpeg){: style="display: block; margin: 0 auto; width: 400px;"} 
 <div align="center">
   Hexapod top view
@@ -101,11 +101,10 @@ For my first milestone, I built the chassis of the hexapod and and finished wiri
   Hexapod bottom view
 </div>
 
-
 ## Challenges
 ### Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
-
+<br>
 ![Hexapod control board and sautered wires](Photos/Milestone_1_Wires_Closeup.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
 <div align="center">
   Hexapod control board and sautered wires
@@ -113,7 +112,6 @@ Due to the fact that the two 3.7V lithium batteries the hexapod called for were 
 
 ### Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
-
 
 ## Next Step
 For the next step, I want to build the remote controller and design a battery holder for the external battery pack. This will allow my robot to move remotely while carrying the battery pack.
