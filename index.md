@@ -72,7 +72,7 @@ Next, I created the individual parts of my 3D model, starting with making 3D mod
 </div> 
 <br>
 <div align="center">
-  <img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/buttonHolderExport1Image.png" width="400"/>
+  <img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/batteryHolder1.0_buttonHolder_Image.png" width="400"/>
 </div>
 <div align="center">
   Left: 3D model of button with keys / Right: 3D model of button holder with grooves
@@ -95,7 +95,7 @@ After 3D printing the first version of my battery case, I found that it did not 
 ## How it works
 The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
 
-![Sketch of hexapod leg movement](Photos/Milestone_2_Robot_Hexapod_Leg_Diagram_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
+![Sketch of hexapod leg movement](Photos/Milestone_2_Hexapod_Leg_Diagram_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
 <div align="center">
   Diagram of hexapod leg movement
 </div>
@@ -110,7 +110,8 @@ The premade code from the company that created the hexapod allows for three move
 </div>
 <br>
 
-The hexapod and the remote control communicate using wireless signals, 
+## Next Step
+For my next step, I want to mount a camera capable of filming and broadcasting video to the front of the hexapod. I also want to experiment with a raspberry pi in order to program object detection and avoidance.
 
 # First Milestone
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IBBULp1QDGs?si=18xh0vsklhWrsrXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
