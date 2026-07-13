@@ -55,15 +55,22 @@ Before creating the CAD for the battery case,  I created a model of the hexapod'
   Sketch of hexapod chassis geometry
 </div>
 <br>
-First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress. I added stilts to the points of attatchment in order to elevate the battery case from the electrical components also present on top of the hexapod. At this point, I also found that my baseplate design would cover the hexapod's power button, and so I would have to design a part to push it.
+First, I created the baseplate, designing it to be large enough to ensure a comfortable margin betweeen the points of attatchment and the edge of the baseplate. Instead of making a separate extension for each of the points of attatchment, I created a large platform to guarentee that the battery case would be stable and to reduce the risk of breaking under stress. I added stilts to the points of attatchment in order to elevate the battery case from the electrical components also present on top of the hexapod. While doing this, I also discovered that the power button of the hexapod would be covered by the battery case baseplate.
 
 ![Sketch of hexapod baseplate geometry](Photos/Milestone_2_Robot_Baseplate_Geo_Annotated.png){: style="display: block; margin: 0 auto;"}
 <div align="center">
   Sketch of hexapod baseplate geometry
 </div> 
 <br>
-After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
+Next, I created the individual parts of my 3D model, starting with making 3D models of the battery case baseplate and walls, which I dimensioned according the the size of the battery. After finding that power button of the hexapod would be covered by the baseplate of the battery case, I designed a mechanism to extend the button, allowing the power switch to be pressed from a point above the baseplatee. I created a rectangular rod with two keys on opposing sides. I then designed a casing with grooves matching the keys, allowing the rod to move freely within the casing.
 
+<div align="center">
+  <img src="Photos/batteryHolder1.0_base_Image.png" width="400"/> <img src="Photos/batteryHolder1.0_walls_Image.png" width="400"/>
+</div>
+<div align="center">
+  Left: 3D model of battery case baseplate / Right: 3D model of battery case walls
+</div> 
+<br>
 <div align="center">
   <img src="Photos/buttonExport1Image.png" width="400"/> <img src="Photos/buttonHolderExport1Image.png" width="400"/>
 </div>
@@ -71,7 +78,19 @@ After finding that power button of the hexapod would be covered by the baseplate
   Left: 3D model of button with keys / Right: 3D model of button holder with grooves
 </div> 
 <br>
-After 3D printing the first version of my battery case, I found that some measurements were off. The postition of the button pushing mechanism did not align with the power switch on the hexapod, and the length of the button did not account for the height of the stilts, meaning that the that it could not reach the power switch. These issues were easy to fix, requiring only a few adjustments in the measurements of the design.
+I finished the first battery case design by attatching the button holder mechanism to its corresponding hole on the baseplate of the battery case.
+
+![Battery holder assembly v2](Photos/batteryHolder2.0_assembly_Image.png){: style="display: block; margin: 0 auto; width: 400px;"}
+<div align="center">
+  Image of battery case v1
+</div>
+After 3D printing the first version of my battery case, I found that it did not print well due to the unusual shape. Also, a few measurements were off. The postition of the button pushing mechanism did not align with the power switch on the hexapod, and the length of the button did not account for the height of the stilts, meaning that the that it could not reach the power switch. I split the battery case into two parts attatched by screws to make it easier to print, and fixed the alignments of the battery holder and button. 
+
+![Battery holder assembly v2](Photos/batteryHolder2.0_assembly_Image_2.png){: style="display: block; margin: 0 auto; width: 400px;"}
+<div align="center">
+  Image of battery case v2
+</div>
+
 
 ## How it works
 The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
