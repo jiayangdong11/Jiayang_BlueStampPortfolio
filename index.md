@@ -145,17 +145,231 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
+## Camera Code
 ```c++
+// For default camera function
+#include <Wire.h>
+#include <ArduCAM.h>
+#undef swap //Undefines ArduCAM swap function so it does not conflict with WebServer.h swap function
+#include <SPI.h>
+#include "memorysaver.h"
+
+// For wireless camera function
+#include <WiFi.h>
+#include <WebServer.h>
+
+// Set higher for more video fps
+const int FREQUENCY = 16000000; // Communication frequency
+const int BUFFER_SIZE = 4096;   // Buffer size 
+
+const char* ssid     = "J11";      // Wi-Fi Name
+const char* password = "Blue@J11"; // Wi-Fi Password
+
+
+WebServer server(80); // Sets up HTTP server
+
+//Webpage formatting
+const char* htmlPage = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feather V2 Camera Stream</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #121212; color: #fff; margin: 20px; }
+    img { max-width: 95%; height: auto; border: 2px solid #333; border-radius: 8px; transform: rotate(180deg);}
+    .status { margin-top: 10px; color: #888; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div><img id="stream" src="/capture" onload="fetchNextFrame()" onerror="retryFrame()" /></div>
+  <p class="status" id="fps">Streaming...</p>
+
+  <script>
+    let lastTime = Date.now();
+
+    function fetchNextFrame() {
+      let now = Date.now();
+      let fps = (1000 / (now - lastTime)).toFixed(1);
+      lastTime = now;
+      document.getElementById('fps').innerText = 'FPS: ' + fps;
+
+      // Request next frame with unique timestamp to bypass browser cache
+      document.getElementById('stream').src = '/capture?' + new Date().getTime();
+    }
+
+    function retryFrame() {
+      setTimeout(fetchNextFrame, 500);
+    }
+  </script>
+</body>
+</html>
+)rawliteral";
+
+// Serves the HTML page
+void handleRoot() {
+  server.send(200, "text/html", htmlPage); //(200 = sucessfully sent, data type, message content)
+}
+
+
+// Check if memorysaver.h is set to OV2640
+#if !(defined OV2640_MINI_2MP)
+  #error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
+#endif
+
+// Set chip select pin:
+const int CS = 15;
+
+// Creates ArduCAM object (camera type, chip select pin)
+#if defined (OV2640_MINI_2MP)
+  ArduCAM myCAM( OV2640, CS );
+#else
+  ArduCAM myCAM( OV5642, CS );
+#endif
+
+
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
+uint8_t vid, pid;     // Vendor ID and Product ID
+uint8_t temp;         // Temporary storage
+Wire.begin();         // Initialize I2C
+Serial.begin(115200); // Set baud rate
+delay(1000);
+
+// Print "startup complete" (for troulbleshooting)
+Serial.println(F("ACK CMD ArduCAM Start! END"));
+
+pinMode(CS, OUTPUT);            // Set CS pin as output
+digitalWrite(CS, HIGH);         // Deactivates CS pin until setup complete
+delay(200);
+SPI.begin(SCK, MISO, MOSI, CS); // Initialize SPI
+SPI.setFrequency(FREQUENCY);    // Set SCK speed (higher frequency = faster communication)
+
+// Reset the CPLD (clears lingering image data)
+myCAM.write_reg(0x07, 0x80);
+delay(100);
+myCAM.write_reg(0x07, 0x00);
+delay(100);
+
+// Test if SPI is working
+while(1){
+  myCAM.write_reg(ARDUCHIP_TEST1, 0x55);
+  temp = myCAM.read_reg(ARDUCHIP_TEST1);
+  if (temp != 0x55){
+    Serial.println(F("ACK CMD SPI interface Error! END"));
+    delay(1000);continue;
+  }else{
+    Serial.println(F("ACK CMD SPI interface OK. END"));break;
+  }
 }
 
+// Validates that attatched camera module is and Ov2640 and is compatible 
+// Checks vid (Vendor ID) and pid (Product ID)
+while(1){
+  myCAM.wrSensorReg8_8(0xff, 0x01);
+  myCAM.rdSensorReg8_8(OV2640_CHIPID_HIGH, &vid);
+  myCAM.rdSensorReg8_8(OV2640_CHIPID_LOW, &pid);
+  if ((vid != 0x26 ) && (( pid != 0x41 ) || ( pid != 0x42 ))){
+    Serial.println(F("ACK CMD Can't find OV2640 module! END"));
+    delay(1000);
+    continue;
+  }
+  else{
+    Serial.println(F("ACK CMD OV2640 detected. END"));
+    break;
+  } 
+}
+
+myCAM.set_format(JPEG);                      // Set photo format to JPEG
+myCAM.InitCAM();                             // Initializes camera settings and clears leftover camera data
+myCAM.OV2640_set_JPEG_size(OV2640_320x240);  // Set photo resolution
+delay(1000);
+
+// Clears FIFO (buffer)
+myCAM.clear_fifo_flag();
+
+
+// Prints "Connecting to Wi-Fi..." until connected (for troubleshooting)
+Serial.print("Connecting to Wi-Fi");
+WiFi.begin(ssid, password);
+while (WiFi.status() != WL_CONNECTED) {
+  delay(500);
+  Serial.print(".");
+}
+//Prints "Connected" when connected to wifi (for troubleshooting)
+Serial.println("\nConnected! IP Address: ");
+Serial.println(WiFi.localIP()); //Prints IP adress in serial monitor
+
+// Triggers handleRoot() to send HTML(website formatting) data to website when a request is made
+server.on("/", handleRoot);
+// Triggers handleCapture() to send the image requested by the HTML data from the previous function
+server.on("/capture", handleCapture);
+
+server.begin(); // Start server
+}
+
+
+
+// Continually checks if a request is made, sends data if request detected
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  server.handleClient();
 }
+
+
+
+void handleCapture() {
+  // Clears old image data
+  myCAM.flush_fifo();
+  myCAM.clear_fifo_flag();
+  // Takes photo and stores it in FIFO (buffer)
+  myCAM.start_capture();
+
+  // Pause program until camera finishes capture
+  while (!myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK));
+
+  // Prints "Capture error" if image is corrupted (for troubleshooting)
+  uint32_t length = myCAM.read_fifo_length();
+  if (length == 0 || length >= MAX_FIFO_SIZE) {
+    server.send(500, "text/plain", "Capture Error");
+    return;
+  }
+
+  // Allow for direct raw data transmission
+  WiFiClient client = server.client();
+  // Send image data specifications
+  client.print("HTTP/1.1 200 OK\r\n");                        // Tell browser request was processed succesfully
+  client.print("Content-Type: image/jpeg\r\n");               // Tell browser image format
+  client.print("Content-Length: " + String(length) + "\r\n"); // Tell browser size of file
+  client.print("Connection: close\r\n\r\n");                  // Tell browser to to terminate connection 
+
+  myCAM.CS_LOW(); // Activates CS pin
+
+  // Activates burst read mode (Continually sends next byte without needing to be asked for each byte individually)
+  myCAM.set_fifo_burst(); 
+
+  uint8_t buffer[BUFFER_SIZE]; // Creates buffer
+  size_t buf_idx = 0; // Stores amount of bytes in buffer
+
+  // Decraments length until 0 (until all bytes are sent)
+  while (length--) {
+    buffer[buf_idx++] = SPI.transfer(0x00); // Sends a dummy byte to send the next byte to buffer
+
+    // Send the buffer to the browser when buffer is full
+    if (buf_idx == sizeof(buffer)) {
+      client.write(buffer, buf_idx);
+      buf_idx = 0; // Sets index to 0 so incoming data overwrites old data in the buffer
+    }
+  }
+
+  // Send remaining bytes at the end (that do not completely fill buffer) to browser
+  if (buf_idx > 0) {
+    client.write(buffer, buf_idx);
+  }
+
+  myCAM.CS_HIGH(); // Deactivates CS pin
+}
+
+
 ```
 
 # Bill of Materials
