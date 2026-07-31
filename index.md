@@ -9,7 +9,7 @@ You should comment out all portions of your portfolio that you have not complete
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Jiayang D | Lynbrook High School | Input field of engineering interest | Incoming Sophmore |
+| Jiayang D | Lynbrook High School | Mehcanical/Electrical Engineering | Incoming Sophomore |
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
@@ -17,9 +17,26 @@ You should comment out all portions of your portfolio that you have not complete
   
 # Final Milestone
 
+For my final milestone, I added a camera to the front of my hexapod, programming it to broadcast live video online.
+
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+I chose to use an Arducam OV2640 along with a Raspbery Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. 
+
+## Programming default camera functionality
+After purchasing the Arducam, I found premade code on the arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
+
+
+
+## Adding wireless camera functionality
+Even though the camera could now take images, I was not satisfied with the current functionality. With the current code, the microcontroller had to be plugged into my computer constantly in order to transfer information. I wanted the robot to be able to record remotely, and while moving, so I started work on programming the robot to transmit the information wirelessly. I started by modifying the code to create a wifi connection to a specific IP using the Feather v2's built in wifi transceiver. I then programmed the feather v2 to continually check for a user on the wifi connection, and to send photos taken by the Arducam to the website if a connection was detected. This allowed the camera to stream video, but the video was inconsistent and would frequently crash.
+
+## Wiring the Arducam and Feather v2
+
+
+
 
 For your final milestone, explain the outcome of your project. Key details to include are:
 - What you've accomplished since your previous milestone
@@ -159,11 +176,11 @@ Here's where you'll put your code. The syntax below places it into a block of co
 #include <WebServer.h>
 
 // Set higher for more video fps
-const int FREQUENCY = 16000000; // Communication frequency
+const int FREQUENCY = 8000000; // Communication frequency
 const int BUFFER_SIZE = 4096;   // Buffer size 
 
-const char* ssid     = "J11";      // Wi-Fi Name
-const char* password = "Blue@J11"; // Wi-Fi Password
+const char* ssid     = "bluestamp_j10";      // Wi-Fi Name
+const char* password = "blueblue123"; // Wi-Fi Password
 
 
 WebServer server(80); // Sets up HTTP server
@@ -173,35 +190,16 @@ const char* htmlPage = R"rawliteral(
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Feather V2 Camera Stream</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #121212; color: #fff; margin: 20px; }
-    img { max-width: 95%; height: auto; border: 2px solid #333; border-radius: 8px; transform: rotate(180deg);}
-    .status { margin-top: 10px; color: #888; font-size: 14px; }
-  </style>
+    <title>Feather V2 Camera Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #121212; color: #fff; margin: 20px; }
+        img { max-width: 95%; height: auto; border: 2px solid #333; border-radius: 8px; transform: rotate(180deg);}
+    </style>
 </head>
 <body>
-  <div><img id="stream" src="/capture" onload="fetchNextFrame()" onerror="retryFrame()" /></div>
-  <p class="status" id="fps">Streaming...</p>
-
-  <script>
-    let lastTime = Date.now();
-
-    function fetchNextFrame() {
-      let now = Date.now();
-      let fps = (1000 / (now - lastTime)).toFixed(1);
-      lastTime = now;
-      document.getElementById('fps').innerText = 'FPS: ' + fps;
-
-      // Request next frame with unique timestamp to bypass browser cache
-      document.getElementById('stream').src = '/capture?' + new Date().getTime();
-    }
-
-    function retryFrame() {
-      setTimeout(fetchNextFrame, 500);
-    }
-  </script>
+    <!-- Point the source directly to the stream endpoint -->
+    <div><img src="/stream" /></div>
 </body>
 </html>
 )rawliteral";
@@ -302,8 +300,10 @@ Serial.println(WiFi.localIP()); //Prints IP adress in serial monitor
 
 // Triggers handleRoot() to send HTML(website formatting) data to website when a request is made
 server.on("/", handleRoot);
-// Triggers handleCapture() to send the image requested by the HTML data from the previous function
-server.on("/capture", handleCapture);
+// Triggers handleCapture(), 
+// server.on("/capture", handleCapture);
+// Triggers handleStream()
+server.on("/stream", handleStream);
 
 server.begin(); // Start server
 }
@@ -313,7 +313,9 @@ server.begin(); // Start server
 // Continually checks if a request is made, sends data if request detected
 void loop() {
   server.handleClient();
+  
 }
+
 
 
 
@@ -370,22 +372,94 @@ void handleCapture() {
 }
 
 
+
+
+void handleStream() {
+  // Allow for direct raw data transmission
+  WiFiClient client = server.client();
+  
+  // Tell browser request was processed succesfully
+  client.print("HTTP/1.1 200 OK\r\n"); 
+
+  // Tell browser that data will be sent in a continous stream
+  client.print("Content-Type: multipart/x-mixed-replace; boundary=mjpegstream\r\n");
+  client.print("Connection: keep-alive\r\n\r\n");
+
+  uint8_t buffer[BUFFER_SIZE]; // Creates buffer
+
+  while (client.connected()) {
+    // Clears old image data
+    myCAM.flush_fifo();
+    myCAM.clear_fifo_flag();
+   // Takes photo and stores it in FIFO (buffer)
+   myCAM.start_capture();
+
+    // Create watchdog 
+    unsigned long timeout = millis(); // Check time since connection established
+    bool capture_success = true;      // Check if frame capture sucess or time out
+    
+    // Break loop if more than 1 second without new frame
+    while (!myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK)) {
+      if (millis() - timeout > 1000) { 
+        Serial.println("Warning: Camera capture timeout!");
+        capture_success = false;
+        break; 
+      }
+    }
+
+    // Resart loop if camera timed out
+    if (!capture_success) {
+      myCAM.CS_HIGH();
+      continue; 
+    }
+
+    uint32_t length = myCAM.read_fifo_length();
+    if (length == 0 || length >= MAX_FIFO_SIZE) {
+      continue;
+    }
+
+    client.print("--mjpegstream\r\n");                              // Tell browser that new image frame incoming
+    client.print("Content-Type: image/jpeg\r\n");                   // Tell browser image format
+    client.print("Content-Length: " + String(length) + "\r\n\r\n"); // Tell browser size of file
+
+    myCAM.CS_LOW(); // Activates CS pin
+
+    // Activates burst read mode (Continually sends next byte without needing to be asked for each byte individually)
+    myCAM.set_fifo_burst();
+
+    // Decraments length until 0 (until all bytes are sent)
+    size_t buf_idx = 0;
+    while (length--) {
+      buffer[buf_idx++] = SPI.transfer(0x00);  // Sends a dummy byte to send the next byte to buffer
+      
+      // Send the buffer to the browser when buffer is full
+      if (buf_idx == sizeof(buffer)) {
+        if (!client.connected()) break; 
+        client.write(buffer, buf_idx);
+        buf_idx = 0;  // Sets index to 0 so incoming data overwrites old data in the buffer
+      }
+    }
+
+    // Send remaining bytes at the end (that do not completely fill buffer) to browser
+    if (buf_idx > 0 && client.connected()) {
+      client.write(buffer, buf_idx);
+    }
+    
+    myCAM.CS_HIGH(); // Deactivate CS pin
+    client.print("\r\n"); // Tell browser image frame ended
+
+    delay(1); 
+  }
+}
+
+
+
+
 ```
 
 # Bill of Materials
-Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
-Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
-
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
 | Hexapod Kit | Base hexapod construction | $102.95 | <a href="https://www.amazon.com/Freenove-Raspberry-Crawling-Detailed-Tutorial/dp/B07FLXFDZ1?th=1"> Link </a> |
 | Adafruit Feather V2 | Microcontroller for the camera | $19.95 | <a href="https://www.adafruit.com/product/5400?srsltid=AfmBOop1ICXdfQI1rkXFHPG4oLnxB5XtSnDnWPT32RcghEwRS8RghYuW"> Link </a> |
 | Arducam OV2640 | Allows hexapod to take images of its surroundings | $25.99 | <a href="https://www.amazon.com/Arducam-Module-Megapixels-Arduino-Mega2560/dp/B012UXNDOY/ref=sr_1_1?crid=2GCUYGHA50TJP&dib=eyJ2IjoiMSJ9.5dpM3JLxyp15AqYZjr9_bHNdlwVKkC3WKnLCg0odhgSo8smfYYXuAcd5yPgbeXLI5L_oIGVcm8ODUnjDcAGsYboNEgcXFFCoODD6swFR5YJ5NUzkgO6dz17zr5sjUEF0VUvKoQH0CwPCzfN2ZJjNBJ-J7oKDPQ6CYHarX8TOnIKzACe9zs3wUSgHVJ43qMNX5KDU8CSE9wQAJDGbFysW522mNWj24yW8ligieSWCkes.MKVJ0bMdDfYVj4GEcxG0Lduyw022Qm7hTmUxTQ05i5Q&dib_tag=se&keywords=arducam%2B2640&qid=1784821998&sprefix=arducamov%2B2640%2Caps%2C194&sr=8-1&th=1"> Link </a> |
-
-# Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
-
-To watch the BSE tutorial on how to create a portfolio, click here.
