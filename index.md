@@ -37,6 +37,10 @@ Even though the camera could now take images, I was not satisfied with the curre
 
 
 
+## Improving the wireless camera code
+I managed to 
+
+
 
 For your final milestone, explain the outcome of your project. Key details to include are:
 - What you've accomplished since your previous milestone
@@ -157,7 +161,10 @@ For the next step, I want to build the remote controller and design a battery ho
 
 
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
+![Wiring Diagram](Photos/Wiring_Diagram.jpeg){: style="display: block; margin: 0 auto;"} 
+<div align="center">
+
+</div>
 
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
@@ -451,10 +458,6 @@ void handleStream() {
     delay(1); 
   }
 }
-
-
-
-
 ```
 
 # Bill of Materials
