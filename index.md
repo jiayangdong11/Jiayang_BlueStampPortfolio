@@ -16,25 +16,31 @@ You should comment out all portions of your portfolio that you have not complete
 ![Headstone Image](logo.svg)
   
 # Final Milestone
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RHfodgyZKLk?si=RhUic0zLaz7TaMKA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my final milestone, I added a camera to the front of my hexapod, programming it to broadcast live video online.
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 I chose to use an Arducam OV2640 along with a Raspbery Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. 
 
 ## Programming default camera functionality
 After purchasing the Arducam, I found premade code on the arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
 
-
+![Basic Camera Function](Photos/Milestone_3_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
+<div align="center">
+  Taking a photo with Arducam using HostApp
+</div>
 
 ## Adding wireless camera functionality
 Even though the camera could now take images, I was not satisfied with the current functionality. With the current code, the microcontroller had to be plugged into my computer constantly in order to transfer information. I wanted the robot to be able to record remotely, and while moving, so I started work on programming the robot to transmit the information wirelessly. I started by modifying the code to create a wifi connection to a specific IP using the Feather v2's built in wifi transceiver. I then programmed the feather v2 to continually check for a user on the wifi connection, and to send photos taken by the Arducam to the website if a connection was detected. This allowed the camera to stream video, but the video was inconsistent and would frequently crash.
 
-## Wiring the Arducam and Feather v2
+![Wireless Camera Function](Photos/Milestone_3_Wireless_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
+<div align="center">
+  Video being broadcast to an IP adress
+</div>
 
+## Wiring the Arducam and Feather v2
+Initially, I tried placing the Feather v2 microcontroller onto a breadboard and inserting male wires into the breadboard to allow for connection to the microcontroller. I used female wires to directly attach to the Arducam's pins. However, I discovered that this connection method caused the signal between the Arducam and the microcontroller to frequently disconnect. Upon further testing, I found the issue to be that the pins were too loose, and in the moments when the pins were not in contact with the board, the signal would disconnect. To resolve this issue, I soldered header pins onto the microcontroller, ensuring that the pins would always be in contact with the microcontroller. This also allowed me to remove the breadboard and reduce the size footprint of the microcontroller. I also soldered male wires to the pins of the Arducam for good measure, guaranteeing that the connection would always remain stable. Also, I connected the Arducam to the 5V power output on the hexapod and I connected the microcontroller to the 3.3V output. This meant that all components on the hexapod could supply energy directly from the battery on the hexapod, allowing it to move around freely detached from my computer while still streaming video to the website. However, even with the changes to the wiring of the camera and microcontroller, the camera was still 
 
 
 ## Improving the wireless camera code
@@ -51,12 +57,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 For my final milestone, I added a camera to hexapod, allowing it to remotely broadcast video of its surrounds to a website. 
 
 # Second Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C8R0I1Gc1Kc?si=Jo8ulrJLg_x0mOOA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my second milestone, I used provided Arduino and Processing app to allow the hexapod to move. I also built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
 
 ## Programming the robot
@@ -144,8 +145,7 @@ For my first milestone, I built the chassis of the hexapod and and finished wiri
   Hexapod bottom view
 </div>
 
-## Challenges
-### Integrating the battery
+## Integrating the battery
 Due to the fact that the two 3.7V lithium batteries the hexapod called for were deemed unsafe, I used a 7.2V battery instead to power the hexapod. At first, I thought that soldering a connecter to connect the battery to the power pins on one side of circuit board would be enough, but it became evident after testing the power with a multimeter that I would have to connect the power to the other side of the circuit board as well. After soldering two wires to connect all the circuit board's power pins to the battery, power was sucessfully supplied to the entire robot.
 
 ![Hexapod control board and sautered wires](Photos/Milestone_1_Wires_Closeup.jpeg){: style="display: block; margin: 0 auto; width: 400px;"}
@@ -153,7 +153,7 @@ Due to the fact that the two 3.7V lithium batteries the hexapod called for were 
   Hexapod control board and sautered wires
 </div>
 
-### Fixing the servo motors
+## Fixing the servo motors
 Once power was supplied to the robot, it would curl up in unnatural ways after being turned on. I thought that this might have been caused by the robot's power supply due to the use of a differnt battery (mentioned above). However, after checking the power, nothing seemed wrong as to cause the robot to malfunction. After some more investigation in the instruction mannual, I found that I had forgot to zero the motors, and that the curling of the hexapod was caused by the motors trying to go to their default positions. To fix this issue, I disassembled all of the servo motors. After turning the power on, the motors spun to their default position, and I carefully assembled the hexapod back together, being careful not to rotate the servos too much. After testing the robot again, the issue was fixed.
 
 ## Next Step
@@ -161,10 +161,8 @@ For the next step, I want to build the remote controller and design a battery ho
 
 
 # Schematics 
-![Wiring Diagram](Photos/Wiring_Diagram.jpeg){: style="display: block; margin: 0 auto;"} 
-<div align="center">
 
-</div>
+![Wiring Diagram](Photos/Wiring_Diagram.png){: style="display: block; margin: 0 auto;"} 
 
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
