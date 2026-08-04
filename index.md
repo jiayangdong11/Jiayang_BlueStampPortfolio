@@ -1,24 +1,22 @@
 # Hexapod Robot
 For my project, I built a hexapod. The robot has 6 legs which are independenty controlled by servo motors and each leg can move on its own. The hexapod has a wide variety of movement options due to this fact, such as differnt walking gaits and turning in place.
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
-
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Jiayang D | Lynbrook High School | Mehcanical/Electrical Engineering | Incoming Sophomore |
 
-**Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
-
-![Headstone Image](logo.svg)
+![Headstone Image](Robot_With_Person.jpg)
   
 # Final Milestone
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RHfodgyZKLk?si=RhUic0zLaz7TaMKA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my final milestone, I added a camera to the front of my hexapod, programming it to broadcast live video online.
-
+</br>
+<div align="center">
+  <img src="Milestone_3_Full_Robot.jpeg" width="400"/>
+</div>
+<div align="center">
+  Completed milestone 3 robot
+</div> 
 
 ## Programming default camera functionality
 I chose to use an Arducam OV2640 along with a Raspbery Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. After purchasing the Arducam, I found premade code on the arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
@@ -41,7 +39,11 @@ Initially, I tried placing the Feather v2 microcontroller onto a breadboard and 
 
 
 ## Improving the wireless camera code
-I managed to 
+Through a few changes in the code, I managed to improve the camera's streaming fps from around 5fps to around 15fps. I did this by increasing the buffer size/ communication frequency to increase data transfer rate, and I also changed the function in my code that was in charge of sending data to the website. Originally, I had programmed the microcontroller to send the data in packets, requiring a new request from the website each time a new packet was required. I improved the code by removing the unnecessary additional requests. In the improved version of my code, the website was only required to request data from the microcontroller once, with a function to keep the connection open. This allowed the microcontroller to operate faster, sending data continually instead of waiting for many requests. I also added a segment of code to restart the connection in case  
+
+
+
+(In the code section of this page, there are two additional functions, handleCapture() and handleStream(). handleCapture() is the old, slower function that sends images one at a time, while handleSteam() is the new function which sends data continuously.
 
 
 
@@ -56,6 +58,13 @@ For my final milestone, I added a camera to hexapod, allowing it to remotely bro
 # Second Milestone
 <iframe width="560" height="315" src="https://www.youtube.com/embed/C8R0I1Gc1Kc?si=Jo8ulrJLg_x0mOOA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my second milestone, I used provided Arduino and Processing app to allow the hexapod to move. I also built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
+</br>
+<div align="center">
+  <img src="Photos/Milestone_2_Full_Robot.jpeg" width="400"/>
+</div>
+<div align="center">
+  Completed milestone 2 robot  
+</div> 
 
 ## Programming the robot
 Premade code was provided by the company that created the hexabot kit in the form of Processing App and Arduino code files. An option to completely code the robot from scratch was avaiable, but I did not choose to take it. However, the premade code still provided some degree of customization and flexibility. I was able to adjust the robot's movement speed, walking gait (see "How it works" section below), and the radio frequency of communications between the robot and the remote, which I changed to prevent my hexapod from receiving singals from other studennt's controllers. 
@@ -455,6 +464,11 @@ void handleStream() {
 }
 ```
 
+## Robot Code
+
+The following robot code, along with the remote code, was provided along with the base hexapod kit and uses the FNHR library. I modified the commands and added comments for better readability, but I did not write the base code.
+</br>
+
 ```c++
 /*
  * Sketch     Default function sketch for robot
@@ -500,7 +514,9 @@ void loop() {
   robot.Update();
 }
 ```
+</br>
 
+## Remote Code
 ```c++
 /*
  * Sketch     Default function sketch for remote
