@@ -489,6 +489,7 @@ void handleStream() {
 ## Robot Code
 
 The following robot code, along with the remote code, was provided along with the base hexapod kit and uses the FNHR library. I modified the commands and added comments for better readability, but I did not write the base code.
+
 </br>
 
 ```c++
