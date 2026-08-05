@@ -1,25 +1,27 @@
 # Hexapod Robot
-For my project, I built a hexapod. The robot has 6 legs which are independenty controlled by servo motors and each leg can move on its own. The hexapod has a wide variety of movement options due to this fact, such as differnt walking gaits and turning in place.
+For my project, I built a hexapod. The robot has 6 legs which are independently controlled by servo motors and each leg can move on its own. The hexapod has a wide variety of movement options due to this fact, such as different walking gaits and turning in place.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Jiayang D | Lynbrook High School | Mehcanical/Electrical Engineering | Incoming Sophomore |
 
-![Headstone Image](Robot_With_Person.jpg)
+<div align="center">
+  <img src="Photos/Robot_With_Person.jpg" width="400"/> 
+</div>  
   
 # Final Milestone
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RHfodgyZKLk?si=RhUic0zLaz7TaMKA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my final milestone, I added a camera to the front of my hexapod, programming it to broadcast live video online.
 </br>
 <div align="center">
-  <img src="Milestone_3_Full_Robot.jpeg" width="400"/>
+  <img src="Photos/Milestone_3_Full_Robot.jpeg" width="400"/>
 </div>
 <div align="center">
   Completed milestone 3 robot
 </div> 
 
 ## Programming default camera functionality
-I chose to use an Arducam OV2640 along with a Raspbery Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. After purchasing the Arducam, I found premade code on the arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
+I chose to use an Arducam OV2640 along with a Raspberry Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. After purchasing the Arducam, I found premade code on the Arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
 
 ![Basic Camera Function](Photos/Milestone_3_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
 <div align="center">
@@ -31,15 +33,35 @@ Even though the camera could now take images, I was not satisfied with the curre
 
 ![Wireless Camera Function](Photos/Milestone_3_Wireless_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
 <div align="center">
-  Video being broadcast to an IP adress
+  Video being broadcast to an IP address
 </div>
 
+## Modifying the battery case baseplate
+To secure the microcontroller and camera onto my hexapod, I made a few adjustments to the battery case baseplate that I previously designed. I expanded the baseplate to make space for all of the attachment points. Then, I created structures with holes for screws, measuring the microcontroller and camera to get the correct measurements between the screwholes. Finally, I also added wire organizers for the power cable of the battery to keep it away from the camera.
+
+![Soldered Wires](Photos/Milestone_3_Robot_Baseplate_Annotated.png){: style="display: block; margin: 0 auto;"} 
+<div align="center">
+  The new modified baseplate
+</div> 
+
+
 ## Wiring the Arducam and Feather v2
-Initially, I tried placing the Feather v2 microcontroller onto a breadboard and inserting male wires into the breadboard to allow for connection to the microcontroller. I used female wires to directly attach to the Arducam's pins. However, I discovered that this connection method caused the signal between the Arducam and the microcontroller to frequently disconnect. Upon further testing, I found the issue to be that the pins were too loose, and in the moments when the pins were not in contact with the board, the signal would disconnect. To resolve this issue, I soldered header pins onto the microcontroller, ensuring that the pins would always be in contact with the microcontroller. This also allowed me to remove the breadboard and reduce the size footprint of the microcontroller. I also soldered male wires to the pins of the Arducam for good measure, guaranteeing that the connection would always remain stable. Also, I connected the Arducam to the 5V power output on the hexapod and I connected the microcontroller to the 3.3V output. This meant that all components on the hexapod could supply energy directly from the battery on the hexapod, allowing it to move around freely detached from my computer while still streaming video to the website. However, even with the changes to the wiring of the camera and microcontroller, the camera would still freeze and randomly stop working.
+Initially, I tried placing the Feather v2 microcontroller onto a breadboard and inserting male wires into the breadboard to allow for connection to the microcontroller. I used female wires to directly attach to the Arducam's pins. However, I discovered that this connection method caused the signal between the Arducam and the microcontroller to frequently disconnect. Upon further testing, I found the issue to be that the pins were too loose, and in the moments when the pins were not in contact with the board, the signal would disconnect. To resolve this issue, I soldered header pins onto the microcontroller, ensuring that the pins would always be in contact with the microcontroller. This also allowed me to remove the breadboard and reduce the size footprint of the microcontroller. I also soldered male wires to the pins of the Arducam for good measure, guaranteeing that the connection would always remain stable. Also, I connected the Arducam and the microcontroller to 5V power outputs on the hexapod. This meant that all components on the hexapod could supply energy directly from the battery on the hexapod, allowing it to move around freely detached from my computer while still streaming video to the website. However, even with the changes to the wiring of the camera and microcontroller, the camera would still freeze and randomly stop working.
+
+<div align="center">
+  <img src="Photos/Milestone_3_Wiring.jpeg" width="400"/>
+</div>
+<div align="center">
+  Wiring of the Arducam and Feather v2 microcontroller
+</div>
 
 
 ## Improving the wireless camera code
-Through a few changes in the code, I managed to improve the camera's streaming fps from around 5fps to around 15fps. I did this by increasing the buffer size/ communication frequency to increase data transfer rate, and I also changed the function in my code that was in charge of sending data to the website. Originally, I had programmed the microcontroller to send the data in packets, requiring a new request from the website each time a new packet was required. I improved the code by removing the unnecessary additional requests. In the improved version of my code, the website was only required to request data from the microcontroller once, with a function to keep the connection open. This allowed the microcontroller to operate faster, sending data continually instead of waiting for many requests. I also added a segment of code to restart the connection in case  
+Through a few changes in the code, I managed to improve the camera's streaming fps from around 5fps to around 15fps. I did this by increasing the buffer size/ communication frequency to increase data transfer rate, and I also changed the function in my code that was in charge of sending data to the website. Originally, I had programmed the microcontroller to send the data in packets, requiring a new request from the website each time a new packet was required. I improved the code by removing the unnecessary additional requests. In the improved version of my code, the website was only required to request data from the microcontroller once, with a function to keep the connection open. This allowed the microcontroller to operate faster, sending data continually instead of waiting for many requests. I also added a segment of code to restart the connection in case of a break in the signal, ensuring that the signal would stay active even if an error occurred.
+
+
+## Fixing the microcontroller power supply
+After changing the code, the camera would stream smoothly for a few minutes, but would then freeze. Any attempts to restart the robot after it was frozen failed. After testing the wire connection and the microcontroller code again, I didn't find any issues. Upon further inspection, the microcontroller was much hotter than normal. This was caused by an incorrect power supply. I had connected the microcontroller to the hexapod's 5V power output, but it could not handle that amount of power. Plugging the microcontroller into the other, 3.3V, output did not work due it providing too little power. To solve this issue, I tried creating a voltage divider with a mini-breadboard to reduce the amount of power reaching the microcontroller from the 5V output. The voltage was reduced by the voltage divider, but it also became inconsistent, fluctuating between different power levels. In the end, I ran out of time during the program and had to improvise a less ideal setup, taping a battery pack to the bottom of the hexapod and linking to the microcontroller with a USB-c cable. This provided a power supply stable enough for the microcontroller to function without any issues.
 
 
 
@@ -117,8 +139,10 @@ After 3D printing the first version of my battery case, I found that it did not 
 ## How it works
 The hexapod moves by utilizing 18 360 degree servo motors, allowing each leg of the hexapod to move independently and with a large range of motion. In each leg, one servo controls the movement along the xy axis, allowing the leg to turn. The two other servos control the movement of the leg segments, allowing the for the extension or contraction of the leg.
 
-![Sketch of hexapod leg movement](Photos/Milestone_2_Hexapod_Leg_Diagram_Annotated.png){: style="display: block; margin: 0 auto; width: 500px;"}
 <div align="center">
+  <img src="Photos/Milestone_2_Hexapod_Leg_Diagram_Annotated.png" width="400"/> 
+</div>  
+  <div align="center">
   Diagram of hexapod leg movement
 </div>
 <br>
@@ -171,8 +195,6 @@ For the next step, I want to build the remote controller and design a battery ho
 ![Wiring Diagram](Photos/Wiring_Diagram.png){: style="display: block; margin: 0 auto;"} 
 
 # Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
-
 ## Camera Code
 ```c++
 // For default camera function
@@ -561,6 +583,7 @@ void loop() {
 ```
 
 # Bill of Materials
+
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
 | Hexapod Kit | Base hexapod construction | $102.95 | <a href="https://www.amazon.com/Freenove-Raspberry-Crawling-Detailed-Tutorial/dp/B07FLXFDZ1?th=1"> Link </a> |
