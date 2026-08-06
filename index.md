@@ -5,6 +5,8 @@ For my project, I built a hexapod able to stream video to a website. The robot h
 |:--:|:--:|:--:|:--:|
 | Jiayang D | Lynbrook High School | Mehcanical/Electrical Engineering | Incoming Sophomore |
 
+<br>
+
 <div align="center">
   <img src="Photos/Robot_With_Person.jpg" width="400"/> 
 </div>  
@@ -13,31 +15,32 @@ For my project, I built a hexapod able to stream video to a website. The robot h
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RHfodgyZKLk?si=RhUic0zLaz7TaMKA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For my final milestone, I added a camera to the front of my hexapod, programming it to broadcast live video online.
-</br>
+
+<br>
 
 ## Programming default camera functionality
 I chose to use an Arducam OV2640 along with a Raspberry Pi Pico microcontroller in order to process the images captured by the camera. However, due to issues with the compatibility between the Raspberry Pi and the Arducam, I instead decided to switch to an Adafruit Feather v2 Microcontroller instead. After purchasing the Arducam, I found premade code on the Arducam website. However, when testing the code, the camera was able to start but unable to capture images. The issue was caused by an incompatibility in the code, as it was written for an Arduino UNO microcontroller instead of the Feather v2 I was currently using. I changed a few of the pin mappings in the code to prevent the camera from sending signals to the wrong pin, and imported a library to allow the microcontroller use of functions it was missing. These changes fixed the issue, and I was able to take photos with the camera.
 
-</br>
+<br>
 
 ![Basic Camera Function](Photos/Milestone_3_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
 <div align="center">
   Taking a photo with Arducam using HostApp
 </div>
 
-</br>
+<br>
 
 ## Adding wireless camera functionality
 Even though the camera could now take images, I was not satisfied with the current functionality. With the current code, the microcontroller had to be plugged into my computer constantly in order to transfer information. I wanted the robot to be able to record remotely, and while moving, so I started work on programming the robot to transmit the information wirelessly. I started by modifying the code to create a wifi connection to a specific IP using the Feather v2's built in wifi transceiver. I then programmed the feather v2 to continually check for a user on the wifi connection, and to send photos taken by the Arducam to the website if a connection was detected. This allowed the camera to stream video, but the video was inconsistent and would frequently crash.
 
-</br>
+<br>
 
 ![Wireless Camera Function](Photos/Milestone_3_Wireless_Camera_Function.png){: style="display: block; margin: 0 auto;"} 
 <div align="center">
   Video being broadcast to an IP address
 </div>
 
-</br>
+<br>
 
 ## Modifying the battery case baseplate
 To secure the microcontroller and camera onto my hexapod, I made a few adjustments to the battery case baseplate that I previously designed. I expanded the baseplate to make space for all of the attachment points. Then, I created structures with holes for screws, measuring the microcontroller and camera to get the correct measurements between the screwholes. Finally, I also added wire organizers for the power cable of the battery to keep it away from the camera.
@@ -47,6 +50,7 @@ To secure the microcontroller and camera onto my hexapod, I made a few adjustmen
   The new modified baseplate
 </div> 
 
+<br>
 
 ## Wiring the Arducam and Feather v2
 Initially, I tried placing the Feather v2 microcontroller onto a breadboard and inserting male wires into the breadboard to allow for connection to the microcontroller. I used female wires to directly attach to the Arducam's pins. However, I discovered that this connection method caused the signal between the Arducam and the microcontroller to frequently disconnect. Upon further testing, I found the issue to be that the pins were too loose, and in the moments when the pins were not in contact with the board, the signal would disconnect. To resolve this issue, I soldered header pins onto the microcontroller, ensuring that the pins would always be in contact with the microcontroller. This also allowed me to remove the breadboard and reduce the size footprint of the microcontroller. I also soldered male wires to the pins of the Arducam for good measure, guaranteeing that the connection would always remain stable. Also, I connected the Arducam and the microcontroller to 5V power outputs on the hexapod. This meant that all components on the hexapod could supply energy directly from the battery on the hexapod, allowing it to move around freely detached from my computer while still streaming video to the website. However, even with the changes to the wiring of the camera and microcontroller, the camera would still freeze and randomly stop working.
@@ -72,7 +76,7 @@ After changing the code, the camera would stream smoothly for a few minutes, but
 <div align="center">
   Completed milestone 3 robot
 </div> 
-</br>
+<br>
 
 ## How it works
 When power is supplied to the microcontroller and Arducam, the microcontroller requests a free IP address from the local wifi network specified in the code using its built in wifi transceiver. The microcontroller runs preliminary checks to ensure that everything is working, stopping the program if errors occur connecting to wifi or to the Arducam. If all checks succeed, a loop will run, where the microcontroller continually checks if a device is connected to the IP. If the microcontroller detects a device, it will send a signal to the Arducam to start taking photos. The Arducam transmits the data to the microcontroller through an SPI interface, where the data then gets sent to a buffer in the microcontroller's flash memory. One the buffer fills, it is sent as a package to the IP and the data in the buffer gets overwritten by new information. This process repeats indefinitely, until the device leaves the webpage. (In the code section of this page, there are two functions for this process, handleCapture() and handleStream(). handleCapture() is the old, slower function that sends packages one at a time, while handleSteam() is the new function which sends data continuously.)
@@ -84,7 +88,7 @@ If I had more time at Bluestamp, I would have made a number of other improvement
 # Second Milestone
 <iframe width="560" height="315" src="https://www.youtube.com/embed/C8R0I1Gc1Kc?si=Jo8ulrJLg_x0mOOA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 For my second milestone, I used provided Arduino and Processing app to allow the hexapod to move. I also built a remote control for my hexapod and I designed a 3-D printed battery case to allow the hexapod to carry its battery while moving. 
-</br>
+<br>
 
 ## Programming the robot
 Premade code was provided by the company that created the hexabot kit in the form of Processing App and Arduino code files. An option to completely code the robot from scratch was avaiable, but I did not choose to take it. However, the premade code still provided some degree of customization and flexibility. I was able to adjust the robot's movement speed, walking gait (see "How it works" section below), and the radio frequency of communications between the robot and the remote, which I changed to prevent my hexapod from receiving singals from other studennt's controllers. 
@@ -122,7 +126,7 @@ Next, I created the individual parts of my 3D model, starting with making 3D mod
 <br>
 I finished the first battery case design by attatching the button holder mechanism to its corresponding hole on the baseplate of the battery case.
 
-![Battery holder assembly v2](Photos/batteryHolder2.0_assembly_Image.png){: style="display: block; margin: 0 auto; width: 400px;"}
+![Battery holder assembly v2](Photos/batteryHolder1.0_assembly_Image.png){: style="display: block; margin: 0 auto; width: 400px;"}
 <div align="center">
   CAD of battery case v1
 </div>
@@ -494,7 +498,7 @@ void handleStream() {
 
 The following robot code, along with the remote code, was provided along with the base hexapod kit and uses the FNHR library. I modified the commands and added comments for better readability, but I did not write the base code.
 
-</br>
+<br>
 
 ```c++
 /*
@@ -541,7 +545,7 @@ void loop() {
   robot.Update();
 }
 ```
-</br>
+<br>
 
 ## Remote Code
 ```c++
@@ -596,3 +600,10 @@ void loop() {
 | Arducam OV2640 | Allows hexapod to take images of its surroundings | $25.99 | <a href="https://www.amazon.com/Arducam-Module-Megapixels-Arduino-Mega2560/dp/B012UXNDOY/ref=sr_1_1?crid=2GCUYGHA50TJP&dib=eyJ2IjoiMSJ9.5dpM3JLxyp15AqYZjr9_bHNdlwVKkC3WKnLCg0odhgSo8smfYYXuAcd5yPgbeXLI5L_oIGVcm8ODUnjDcAGsYboNEgcXFFCoODD6swFR5YJ5NUzkgO6dz17zr5sjUEF0VUvKoQH0CwPCzfN2ZJjNBJ-J7oKDPQ6CYHarX8TOnIKzACe9zs3wUSgHVJ43qMNX5KDU8CSE9wQAJDGbFysW522mNWj24yW8ligieSWCkes.MKVJ0bMdDfYVj4GEcxG0Lduyw022Qm7hTmUxTQ05i5Q&dib_tag=se&keywords=arducam%2B2640&qid=1784821998&sprefix=arducamov%2B2640%2Caps%2C194&sr=8-1&th=1"> Link </a> |
 | Tenergy 3000mAh 7.2V battery | Power supply for hexapod and Arducam | $24.99 | <a href="https://www.amazon.com/Tenergy-Capacity-Rechargeable-Replacement-Connectors/dp/B0037U35SO?th=1"> Link </a> |
 | Miady 5000mAh Power Bank | Power supply for Feather V2 microcontroller | $8.99 | <a href="https://www.amazon.com/Miady-5000mAh-Portable-Charger-Android/dp/B08T8TDS8S?th=1"> Link </a> |
+
+# Resources
+
+| **Description** | **Link** |
+|:--:|:--:|
+| Video demonstration of Arducam base functionality | <a href="https://www.youtube.com/watch?v=hybQpjwJ4aA&t=8s"> Link </a> |
+| Arducam wiki | <a href="https://docs.arducam.com/Arduino-SPI-camera/Legacy-SPI-camera/Introduction/"> Link </a> |
