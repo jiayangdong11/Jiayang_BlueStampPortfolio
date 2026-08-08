@@ -55,6 +55,8 @@ To secure the microcontroller and camera onto my hexapod, I made a few adjustmen
 ## Wiring the Arducam and Feather v2
 Initially, I tried placing the Feather v2 microcontroller onto a breadboard and inserting male wires into the breadboard to allow for connection to the microcontroller. I used female wires to directly attach to the Arducam's pins. However, I discovered that this connection method caused the signal between the Arducam and the microcontroller to frequently disconnect. Upon further testing, I found the issue to be that the pins were too loose, and in the moments when the pins were not in contact with the board, the signal would disconnect. To resolve this issue, I soldered header pins onto the microcontroller, ensuring that the pins would always be in contact with the microcontroller. This also allowed me to remove the breadboard and reduce the size footprint of the microcontroller. I also soldered male wires to the pins of the Arducam for good measure, guaranteeing that the connection would always remain stable. Also, I connected the Arducam and the microcontroller to 5V power outputs on the hexapod. This meant that all components on the hexapod could supply energy directly from the battery on the hexapod, allowing it to move around freely detached from my computer while still streaming video to the website. However, even with the changes to the wiring of the camera and microcontroller, the camera would still freeze and randomly stop working.
 
+<br>
+
 <div align="center">
   <img src="Photos/Milestone_3_Wiring.jpeg" width="400"/>
 </div>
@@ -136,6 +138,8 @@ After 3D printing the first version of my battery case, I found that it did not 
 <div align="center">
   CAD of battery case v2
 </div>
+
+<br>
 
 <div align="center">
   <img src="Photos/Milestone_2_Full_Robot.jpeg" width="400"/>
